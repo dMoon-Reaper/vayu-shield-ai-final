@@ -199,7 +199,78 @@ Tracked across the 120-day test set, smog season, and 8-day Diwali window (6–1
 ├── WRITEUP.md                      # Official Veritas AI Hackathon Section 5 Project Paper
 └── README.md                       # Comprehensive documentation
 ```
+# VayuShield AI — Project Credits & Co-Developer Roles
 
+**Veritas AI International High School Hackathon 2026** • Track 4.3: AI + Climate (Project 4.3.2: Next-Day Air Quality Forecast)  
+**Institution:** DAV Public School, Chandrasekharpur, Bhubaneswar, Odisha, India
+
+---
+
+## 1. Co-Developer Roles & Division of Responsibilities
+
+| Co-Developer | Key Contributions & System Ownership |
+| :--- | :--- |
+| **Krishnendu Patro**<br>Grade 11, DAV Public School | • **Theory & Formulation:** Formulated the 6:45 AM school coordinator decision problem and the asymmetric loss objective function (Type II false negative penalty).<br>• **Threshold Architecture:** Defined and justified the operational health threshold matrix ($60\text{ }\mu\text{g/m}^3$ Indian NAAQS vs. $35\text{ }\mu\text{g/m}^3$ US EPA) and 3-rule trade-offs.<br>• **Frontend Engineering Lead:** Built the two-stage responsive web application from scratch using React 19, Vite 6, and Tailwind CSS.<br>• **Interactive Visualizations:** Implemented hardware-accelerated 3D SVG isometric wrappers, Recharts trajectory curve, scorecard deck, and dual themes.<br>• **Documentation:** Co-authored Section 5 write-up (`WRITEUP.md`), `README.md`, and video script. |
+| **Swastik Divyanshu**<br>Grade 11, DAV Public School | • **ML Pipeline Lead:** Engineered `model.py`, `load_openaq.py`, and `load_data.py` using `scikit-learn` `HistGradientBoostingRegressor`.<br>• **Feature Engineering:** Constructed autoregressive multi-day lags ($1, 2, 3, 6$), 3-day/7-day rolling means, boundary layer wind dispersion vectors, and cyclic harmonics.<br>• **Diwali Ablation Experiment:** Designed and evaluated all 5 model variants in `model_diwali.py`, proving the benefits of multiplicative log-ratio targets.<br>• **Telemetry & Quality Audit:** Quantified the 15-day late-September missing gap, discovered the 48 misaligned lag rows, and calculated OpenAQ vs. CAMS correlation ($r = 0.6615$).<br>• **Uncertainty & Failure Analysis:** Calibrated in-sample residual quantiles ($q_{80} = 20.49\text{ }\mu\text{g/m}^3$), evaluated seasonal splits, and authored meteorological failure autopsies. |
+
+---
+
+## 2. Public Datasets & Regulatory Ground Truth
+
+* **OpenAQ Global Air Quality API v3** ([openaq.org](https://openaq.org) | [Documentation](https://docs.openaq.org))  
+  Ingested 1,019 valid daily $\text{PM}_{2.5}$ measurements from regulatory reference monitor Station 8118 (Sensor ID 23534, New Delhi: $28.6139^\circ\text{ N}, 77.2090^\circ\text{ E}$) spanning January 2024 to November 2026.
+* **Open-Meteo Historical Weather API & CAMS Atmospheric Quality API** ([open-meteo.com](https://open-meteo.com))  
+  Harvested daily meteorological features ($10\text{ m}$ max wind speed, dominant wind direction, $2\text{ m}$ mean temperature, precipitation) and atmospheric Copernicus CAMS reanalysis estimates for Central Delhi.
+* **Central Pollution Control Board (CPCB), Govt. of India — NAAQS (2009)** ([cpcb.nic.in/air-pollution](https://cpcb.nic.in/air-pollution/))  
+  National Ambient Air Quality Standards Gazette Notification, establishing the 24-hour regulatory limit of $60\text{ }\mu\text{g/m}^3$ for $\text{PM}_{2.5}$ in India.
+* **World Health Organization (WHO) Global Air Quality Guidelines (2021)** ([who.int/publications/i/item/9789240034228](https://www.who.int/publications/i/item/9789240034228))  
+  International reference standard defining the 24-hour limit of $15\text{ }\mu\text{g/m}^3$ for $\text{PM}_{2.5}$.
+* **Drik Panchang & Astronomical Ephemeris** ([drikpanchang.com](https://www.drikpanchang.com/diwali/diwali-puja-calendar.html))  
+  Official astronomical calendar ephemeris for New Delhi Diwali (Lakshmi Puja) festival dates across 2023, 2024, 2025, and 2026 used to build non-leaking calendar offset features.
+
+---
+
+## 3. Machine Learning Algorithms, Libraries & Computational Tooling
+
+* **scikit-learn (v1.5+)** ([scikit-learn.org](https://scikit-learn.org))  
+  Employed `HistGradientBoostingRegressor` for non-linear regression, `TimeSeriesSplit` for temporal cross-validation, and metrics (`mean_absolute_error`, `mean_squared_error`).
+* **pandas (v2.2+)** ([pandas.pydata.org](https://pandas.pydata.org))  
+  Time series frequency resample (`.asfreq('D')`), rolling window statistics, lag shifts, telemetry cleaning, and JSON dataset serialization.
+* **NumPy (v1.26+)** ([numpy.org](https://numpy.org))  
+  Vectorized atmospheric trigonometric transformations (wind direction $\sin/\cos$ encoding), logarithmic ratio targets ($\ln(\text{tomorrow}/\text{today})$), and residual quantile calculations.
+* **Requests (v2.32+)** ([requests.readthedocs.io](https://requests.readthedocs.io))  
+  HTTP client with rate-limiting and pagination handling for OpenAQ REST API v3 data retrieval.
+
+---
+
+## 4. Web Application Frameworks & Frontend Libraries
+
+* **React 19 & Vite 6** ([react.dev](https://react.dev) | [vite.dev](https://vite.dev))  
+  Next-generation UI framework and blazing-fast development server with Rollup-optimized production bundling.
+* **Tailwind CSS (v3.4+)** ([tailwindcss.com](https://tailwindcss.com))  
+  Utility-first CSS framework configured for bespoke editorial daylight typography (Lit Paper Broadsheet) and dark bioluminescence themes.
+* **Recharts (v2.13+)** ([recharts.org](https://recharts.org))  
+  Declarative React charting library powering the interactive 120-day chronological $\text{PM}_{2.5}$ trajectory chart and confidence intervals.
+* **Lucide React** ([lucide.dev](https://lucide.dev))  
+  Clean, lightweight SVG icon system for UI badges, navigation buttons, and status directives.
+
+---
+
+## 5. Tutorials, Academic References & Performance Skills
+
+* **Veritas AI International High School Hackathon Project Briefs (2026)** ([highschoolhackathon.org](https://highschoolhackathon.org))  
+  Project 4.3.2 specifications for Next-Day Air Quality Forecasting.
+* **ICMR & The Lancet Planetary Health (2021)** ([doi.org/10.1016/S2542-5196(20)30298-9](https://doi.org/10.1016/S2542-5196(20)30298-9))  
+  Academic study: *'Health and economic impact of air pollution in the states of India: The Global Burden of Disease Study 1990–2019'*.
+* **Vercel React Best Practices** (*Vercel Engineering Guidelines*)  
+  Applied performance optimization rules: `rendering-animate-svg-wrapper`, `client-passive-event-listeners`, and `rendering-conditional-render`.
+
+---
+
+## 6. AI Coding Tools Disclosure (Veritas AI Rule 4 Compliance)
+
+* **Google DeepMind Antigravity / Gemini 2.0** ([deepmind.google/technologies/gemini](https://deepmind.google/technologies/gemini/))  
+  Used as an agentic coding assistant for code refactoring, exploratory data analysis scripts, mathematical validation, and documentation formatting. All models, mathematical formulations, and code were fully vetted, tested, and verified by Krishnendu Patro and Swastik Divyanshu.
 ---
 
 ## ⚖️ Required Disclaimers & Attribution
