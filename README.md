@@ -269,7 +269,7 @@ Tracked across the 120-day test set, smog season, and 8-day Diwali window (6–1
 
 ## 6. AI Coding Tools Disclosure (Veritas AI Rule 4 Compliance)
 
-* **Google DeepMind Antigravity / Gemini 2.0** ([deepmind.google/technologies/gemini](https://deepmind.google/technologies/gemini/))  
+* **Google DeepMind Antigravity / Gemini 3.8 Flash / Gemini 4 Hydrogen / Gemini 4 Argon / Claude Opus 4.6** ([deepmind.google/technologies/gemini](https://deepmind.google/technologies/gemini/))  
   Used as an agentic coding assistant for code refactoring, exploratory data analysis scripts, mathematical validation, and documentation formatting. All models, mathematical formulations, and code were fully vetted, tested, and verified by Krishnendu Patro and Swastik Divyanshu.
 ---
 
